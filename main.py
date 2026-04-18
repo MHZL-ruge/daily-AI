@@ -16,35 +16,34 @@ def get_ai_report():
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 🌤️ 今日天气（{CITY}）
-- 晴朗 / 多云 / 阴天 实时天气
+- 这里会显示实时天气与温度
 
 📈 A股市场
-- 大盘走势简要参考
-- 今日热点板块
+- 大盘方向与热点板块简要
 
 🔐 网络安全动态
-- 行业重要新闻
+- 行业重要事件与漏洞播报
 
-🏭 智能制造 / 机械 / 材料
-- 前沿技术动态
+🏭 智能制造/机械/材料
+- 前沿技术与行业动态
 
-💻 GitHub 热门项目
-- 今日趋势项目
+💻 GitHub热门项目
+- 今日趋势开源项目推荐
 
-🔬 科技 & 数码电子
-- 最新资讯
+🔬 科技/数码电子
+- 前沿资讯与新品动态
 
 🌍 政治局势简要
-- 国内外重要事件
+- 国内外重要事件梳理
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-AI 自动日报 · 每日 09:30 准时推送
-"""
-    return report
+💡 今日小结：保持专注，高效前行！
+    """
+    return report, today
 
-def send_email(report):
+def send_email(report, today):
     msg = MIMEText(report, "plain", "utf-8")
-    msg["Subject"] = f"📅 {today} 每日AI日报"
+    msg["Subject"] = f"📅 {today} 每日AI综合日报"
     msg["From"] = QQ_EMAIL
     msg["To"] = QQ_EMAIL
 
@@ -53,6 +52,6 @@ def send_email(report):
         server.sendmail(QQ_EMAIL, [QQ_EMAIL], msg.as_string())
 
 if __name__ == "__main__":
-    report = get_ai_report()
-    send_email(report)
-    print("✅ 发送成功")
+    report, today = get_ai_report()
+    send_email(report, today)
+    print("✅ 日报已发送成功！")
